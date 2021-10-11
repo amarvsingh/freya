@@ -27,11 +27,11 @@ class StretchedSemiCircle extends StatelessWidget {
 class InvertSemiCircle extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()..color = ColorsReservoir().PinkCustom;
+    Paint paint = Paint()..color = ColorsReservoir().pinkCustom;
     canvas.drawArc(
       Rect.fromCenter(
         center: Offset(size.width / 2, 0),
-        height: size.height+50,
+        height: size.height/2+50,
         width: size.width,
       ),
       -pi,

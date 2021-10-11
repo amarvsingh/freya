@@ -30,7 +30,7 @@ class InvertSemiCircle extends CustomPainter {
     canvas.drawArc(
       Rect.fromCenter(
         center: Offset(size.width / 2, 0),
-        height: size.height,
+        height: size.height/2,
         width: size.width,
       ),
       -pi,
