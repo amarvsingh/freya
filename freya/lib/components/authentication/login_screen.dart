@@ -5,19 +5,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:freya/view/colors_reservoir.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'view/shapes/semicircle.dart';
-import 'view/shapes/stretched_semicircle.dart';
+import '../../view/shapes/semicircle.dart';
+import '../../view/shapes/stretched_semicircle.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  MyAppState createState() => MyAppState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class MyAppState extends State<MyApp> {
+class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -31,16 +27,16 @@ class MyAppState extends State<MyApp> {
                 size: 50.0,
               ),
             ),
-            child: Home()));
+            child: LoginScreenHome()));
   }
 }
 
-class Home extends StatefulWidget {
+class LoginScreenHome extends StatefulWidget {
   @override
-  HomeState createState() => HomeState();
+  LoginScreenHomeState createState() => LoginScreenHomeState();
 }
 
-class HomeState extends State<Home> {
+class LoginScreenHomeState extends State<LoginScreenHome> {
   //Variable to Control UI elements
   bool showPassword = false;
   @override
