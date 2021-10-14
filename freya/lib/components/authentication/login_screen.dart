@@ -8,7 +8,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import '../../view/shapes/semicircle.dart';
 import '../../view/shapes/stretched_semicircle.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget { 
   @override
   LoginScreenState createState() => LoginScreenState();
 }
