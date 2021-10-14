@@ -1,14 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:freya/services/routing_service.dart';
 import 'package:freya/view/colors_reservoir.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-
-import 'view/shapes/semicircle.dart';
-import 'view/shapes/stretched_semicircle.dart';
 
 void main() {
   runApp(MyApp());
