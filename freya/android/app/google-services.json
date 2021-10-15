@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "952734137761",
+    "project_id": "freya-special",
+    "storage_bucket": "freya-special.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952734137761:android:5d2fa194a2aded0ef4dfe0",
+        "android_client_info": {
+          "package_name": "com.example.freya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952734137761-bb196df68eeeefnp0n4gudfet7tmnvbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIt3ZJxl4d6nnHzDA5t-k3fDO55oRzDQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952734137761-bb196df68eeeefnp0n4gudfet7tmnvbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,7 +8,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import '../../view/shapes/semicircle.dart';
 import '../../view/shapes/stretched_semicircle.dart';
 
-class LoginScreen extends StatefulWidget { 
+class LoginScreen extends StatefulWidget {
   @override
   LoginScreenState createState() => LoginScreenState();
 }
@@ -23,7 +23,7 @@ class LoginScreenState extends State<LoginScreen> {
             useDefaultLoading: false,
             overlayWidget: Center(
               child: SpinKitCubeGrid(
-                color:ColorsReservoir().pinkCustom,
+                color: ColorsReservoir().pinkCustom,
                 size: 50.0,
               ),
             ),
@@ -39,6 +39,10 @@ class LoginScreenHome extends StatefulWidget {
 class LoginScreenHomeState extends State<LoginScreenHome> {
   //Variable to Control UI elements
   bool showPassword = false;
+
+  //Variabless to save User Inputs
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -90,6 +94,7 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                             child: Column(
                                               children: <Widget>[
                                                 TextFormField(
+                                                  controller: emailController,
                                                   cursorColor: Colors.black,
                                                   decoration: InputDecoration(
                                                     enabledBorder:
@@ -122,6 +127,7 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                   height: 30,
                                                 ),
                                                 TextFormField(
+                                                  controller: passwordController,
                                                   cursorColor: Colors.black,
                                                   obscureText: !showPassword,
                                                   decoration: InputDecoration(
@@ -191,6 +197,7 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                       //Write code to login the user
                                                       context.loaderOverlay
                                                           .show();
+                                                        
                                                     },
                                                     height: 45,
                                                     width: 120,
