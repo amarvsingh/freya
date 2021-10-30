@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:freya/services/routing_service.dart';
@@ -18,6 +19,7 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    Firebase.initializeApp();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: LoaderOverlay(
@@ -52,7 +54,7 @@ class HomeState extends State<Home> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
-        ),
+      ),
     ));
     // TODO: implement build
   }

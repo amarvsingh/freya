@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:freya/services/authentication_service.dart';
+import 'package:freya/services/input_validating_service.dart';
+import 'package:freya/services/toast_service.dart';
 import 'package:freya/view/colors_reservoir.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -16,6 +20,7 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     // TODO: implement build
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,10 +44,29 @@ class LoginScreenHome extends StatefulWidget {
 class LoginScreenHomeState extends State<LoginScreenHome> {
   //Variable to Control UI elements
   bool showPassword = false;
+  bool semicircleVisibility = false;
+  bool stretchedSemicircleVisibility = false;
 
   //Variabless to save User Inputs
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //     Future.delayed(const Duration(milliseconds: 1000), () {
+    //   setState(() {
+    //     stretchedSemicircleVisibility = true;
+    //   });
+    // });
+    // Future.delayed(const Duration(milliseconds: 1000), () {
+    //   setState(() {
+    //     stretchedSemicircleVisibility = true;
+    //   });
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -64,12 +88,29 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                         Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Stack(
                                 children: <Widget>[
-                                  Container(
-                                      child: new StretchedSemiCircle(1, 1)),
-                                  Container(child: new SemiCircle(1, 1)),
+                                  AnimatedOpacity(
+                                      opacity: semicircleVisibility ? 1.0 : 0.0,
+                                      duration: const Duration(milliseconds: 1000),
+                                    child: Container(
+                                        child: new StretchedSemiCircle(1, 1)),
+                                  ),
+                                  AnimatedOpacity(
+                                    opacity: stretchedSemicircleVisibility ? 1.0 : 0.0,
+                                    duration: const Duration(milliseconds: 1000),
+                                      child: Container(
+                                          child: new SemiCircle(1, 1))),
+                                  Center(
+                                    child: Container(
+                                      margin: EdgeInsets.only(top: 35),
+                                      child: Image.asset(
+                                        "assets/images/Freya.png",
+                                      ),
+                                    ),
+                                  ),
                                   Opacity(
                                     opacity: 1,
                                     child: Container(
@@ -127,7 +168,8 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                   height: 30,
                                                 ),
                                                 TextFormField(
-                                                  controller: passwordController,
+                                                  controller:
+                                                      passwordController,
                                                   cursorColor: Colors.black,
                                                   obscureText: !showPassword,
                                                   decoration: InputDecoration(
@@ -184,6 +226,20 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                   ),
                                                 ),
                                                 SizedBox(
+                                                  height: 10,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {},
+                                                  child: Text(
+                                                    "Forgot Password?",
+                                                    style: TextStyle(
+                                                      color: ColorsReservoir()
+                                                          .pinkCustom,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
                                                   height: 30,
                                                 ),
                                                 Container(
@@ -194,10 +250,15 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                   ),
                                                   child: AnimatedButton(
                                                     onPress: () {
-                                                      //Write code to login the user
-                                                      context.loaderOverlay
-                                                          .show();
-                                                        
+                                                      if (InputValidatingService()
+                                                          .isValidEmailPasswordLoginInputs(
+                                                              emailController
+                                                                  .text,
+                                                              passwordController
+                                                                  .text)) {
+                                                        context.loaderOverlay
+                                                            .show();
+                                                      }
                                                     },
                                                     height: 45,
                                                     width: 120,
@@ -291,7 +352,14 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                           width: 10,
                                                         ),
                                                         AnimatedButton(
-                                                          onPress: () {},
+                                                          onPress: () {
+                                                            //Logic to implement Google SignIn
+                                                            AuthenticationService()
+                                                                .googleSignin();
+                                                            ToastService()
+                                                                .showToast(
+                                                                    "Google SignIn Complete!");
+                                                          },
                                                           height: 45,
                                                           width: 120,
                                                           text: 'Sign In',
