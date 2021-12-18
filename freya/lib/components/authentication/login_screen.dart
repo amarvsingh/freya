@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:freya/services/authentication_service.dart';
 import 'package:freya/services/input_validating_service.dart';
+import 'package:freya/services/routing_service.dart';
 import 'package:freya/services/toast_service.dart';
 import 'package:freya/view/colors_reservoir.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -44,8 +45,6 @@ class LoginScreenHome extends StatefulWidget {
 class LoginScreenHomeState extends State<LoginScreenHome> {
   //Variable to Control UI elements
   bool showPassword = false;
-  bool semicircleVisibility = false;
-  bool stretchedSemicircleVisibility = false;
 
   //Variabless to save User Inputs
   TextEditingController emailController = new TextEditingController();
@@ -55,16 +54,6 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //     Future.delayed(const Duration(milliseconds: 1000), () {
-    //   setState(() {
-    //     stretchedSemicircleVisibility = true;
-    //   });
-    // });
-    // Future.delayed(const Duration(milliseconds: 1000), () {
-    //   setState(() {
-    //     stretchedSemicircleVisibility = true;
-    //   });
-    // });
   }
 
   @override
@@ -92,17 +81,9 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                             children: <Widget>[
                               Stack(
                                 children: <Widget>[
-                                  AnimatedOpacity(
-                                      opacity: semicircleVisibility ? 1.0 : 0.0,
-                                      duration: const Duration(milliseconds: 1000),
-                                    child: Container(
-                                        child: new StretchedSemiCircle(1, 1)),
-                                  ),
-                                  AnimatedOpacity(
-                                    opacity: stretchedSemicircleVisibility ? 1.0 : 0.0,
-                                    duration: const Duration(milliseconds: 1000),
-                                      child: Container(
-                                          child: new SemiCircle(1, 1))),
+                                  Container(
+                                      child: new StretchedSemiCircle(1, 1)),
+                                  Container(child: new SemiCircle(1, 1)),
                                   Center(
                                     child: Container(
                                       margin: EdgeInsets.only(top: 35),
@@ -352,13 +333,17 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                           width: 10,
                                                         ),
                                                         AnimatedButton(
-                                                          onPress: () {
+                                                          onPress: () async {
                                                             //Logic to implement Google SignIn
-                                                            AuthenticationService()
+                                                            await AuthenticationService()
                                                                 .googleSignin();
                                                             ToastService()
                                                                 .showToast(
                                                                     "Google SignIn Complete!");
+                                                            Navigator.pushReplacement(
+                                                                context,
+                                                                RoutingService()
+                                                                    .toHomeScreen);
                                                           },
                                                           height: 45,
                                                           width: 120,
