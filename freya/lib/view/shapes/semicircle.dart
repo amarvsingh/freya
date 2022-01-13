@@ -5,6 +5,7 @@ import 'dart:math' show pi;
 
 import 'package:freya/view/colors_reservoir.dart';
 
+// ignore: must_be_immutable
 class SemiCircle extends StatelessWidget {
   double diameter1;
   double diameter2;

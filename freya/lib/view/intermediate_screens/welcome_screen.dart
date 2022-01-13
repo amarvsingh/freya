@@ -1,0 +1,44 @@
+import 'package:animated_background/animated_background.dart';
+import 'package:flutter/material.dart';
+import 'package:freya/view/colors_reservoir.dart';
+
+class WelcomeScreen extends StatefulWidget{
+  @override
+  WelcomeScreenState createState() => WelcomeScreenState();
+
+}
+
+class WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMixin{
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Material(
+        child: AnimatedBackground(behaviour: RandomParticleBehaviour(
+            options: ParticleOptions(
+            baseColor: ColorsReservoir().pinkCustom,
+            particleCount: 30,
+          )
+        ),
+          vsync: this,
+          child:Center(
+            child: Text("Hi! Welcome to Freya!",style:TextStyle(fontSize:30,
+                color: ColorsReservoir().pinkCustom,
+                fontWeight:FontWeight.w500,fontStyle:FontStyle.italic),),
+          ),)
+      ),
+    );
+  }
+
+}
+

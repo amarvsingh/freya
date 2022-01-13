@@ -343,7 +343,7 @@ class LoginScreenHomeState extends State<LoginScreenHome> {
                                                             Navigator.pushReplacement(
                                                                 context,
                                                                 RoutingService()
-                                                                    .toHomeScreen);
+                                                                    .toWelcomeScreen);
                                                           },
                                                           height: 45,
                                                           width: 120,
