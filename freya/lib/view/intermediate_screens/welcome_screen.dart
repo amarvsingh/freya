@@ -1,5 +1,6 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
+import 'package:freya/services/routing_service.dart';
 import 'package:freya/view/colors_reservoir.dart';
 
 class WelcomeScreen extends StatefulWidget{
@@ -10,11 +11,11 @@ class WelcomeScreen extends StatefulWidget{
 
 class WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMixin{
 
-
-
   @override
   void initState() {
     // TODO: implement initState
+    //Calling method to auto switch page
+    navigateToHome();
     super.initState();
   }
 
@@ -38,6 +39,13 @@ class WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMi
           ),)
       ),
     );
+  }
+
+  //Methood to Navigate to Home Page
+  Future<void> navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 4), () {
+      Navigator.pushReplacement(context, RoutingService().toHomeScreen);
+    });
   }
 
 }

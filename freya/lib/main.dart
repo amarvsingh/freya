@@ -63,7 +63,7 @@ class HomeState extends State<Home> {
     context.loaderOverlay.show();
     await Future.delayed(const Duration(seconds: 4), () {
       context.loaderOverlay.hide();
-      Navigator.pushReplacement(context, RoutingService().homeToLogin);
+      Navigator.pushReplacement(context, RoutingService().toLogin);
     });
   }
 }
