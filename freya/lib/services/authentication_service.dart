@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:freya/services/toast_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -25,5 +26,13 @@ class AuthenticationService {
     } else {
       ToastService().showToast("Please Select an Account!");
     }
+  }
+
+  //Method to logout the user
+  void logOut(BuildContext context) async {
+    final FirebaseAuth authLogOut = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = new GoogleSignIn();
+    await googleSignIn.signOut();
+    await authLogOut.signOut();
   }
 }
